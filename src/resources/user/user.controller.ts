@@ -14,3 +14,13 @@ export async function create(req: Request, res: Response, next: NextFunction) {
     next(error);
   }
 }
+
+export async function find(req: Request, res: Response, next: NextFunction) {
+  try {
+    // test validation middleware
+    const {body, query, params} = req;
+    res.status(HttpStatus.OK).json({body, query, params});
+  } catch (error) {
+    next(error);
+  }
+}
