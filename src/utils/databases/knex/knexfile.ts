@@ -1,8 +1,5 @@
-require('ts-node/register');
-require('dotenv/config');
 import { Knex } from 'knex';
 
-console.log('process.env.POSTGRES_PASSWORD', process.env.POSTGRES_PASSWORD);
 const knexConfig: Knex.Config = {
   client: 'pg',
   connection: {

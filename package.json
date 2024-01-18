@@ -7,7 +7,7 @@
     "start": "node ./dist/index.js",
     "dev": "tsc-watch --onSuccess \"npm start\"",
     "build": "tsc",
-    "knex": "npx knex --knexfile src/utils/databases/knex/knexfile.ts",
+    "knex": "npx ts-node -r dotenv/config ./node_modules/knex/bin/cli.js --knexfile src/utils/databases/knex/knexfile.ts",
     "knex:migrate:make": "npm run knex -- migrate:make --",
     "knex:migrate:latest": "npm run knex -- migrate:latest",
     "test": "echo \"Error: no test specified\" && exit 1"
