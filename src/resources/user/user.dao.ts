@@ -1,5 +1,5 @@
 import { knexInstance } from '@/utils/databases/knex/knex';
-import { IUser, TUserFilter, TFilterOptions, TUpdateUser } from './user.interface';
+import { IUser, TUserFilter, TFilterOptions, TUpdateUser, TSafeUser } from './user.interface';
 
 const tableName = 'user';
 
@@ -14,7 +14,7 @@ export async function findOne(filter: TUserFilter) {
 }
 
 export async function updateOne(filter: TUserFilter, newData: TUpdateUser) {
-  return await knexInstance(tableName).where(filter).update(newData).returning('*');
+  return await knexInstance(tableName).where(filter).update(newData).returning<TSafeUser>('*');
 }
 
 export async function removeOne(filter: TUserFilter) {

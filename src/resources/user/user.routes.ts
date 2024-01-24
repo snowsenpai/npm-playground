@@ -7,6 +7,10 @@ export const userRouter = Router();
 
 const basePath = '/users';
 
-userRouter.get(`${basePath}`, validate(schema.findQuery, 'query'), userController.find);
+userRouter.get(basePath, validate(schema.findQuery, 'query'), userController.find);
 
-userRouter.post(basePath, userController.create);
+userRouter.post(basePath, validate(schema.create, 'body'), userController.create);
+
+userRouter.patch(basePath, validate(schema.updateFields, 'body'), validate(schema.findQuery, 'query'), userController.update);
+
+userRouter.delete(basePath, validate(schema.findQuery, 'query'), userController.deleteUser);

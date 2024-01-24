@@ -11,7 +11,7 @@ class UserService {
     const user = await findOne(filter);
     if (!user)
       return false;
-    return true
+    return true;
   }
 
   // auth flag to return sensitive fields
@@ -23,7 +23,10 @@ class UserService {
   }
 
   public async updateUser(filter: TUserFilter, newData: TUpdateUser) {
-    return await updateOne(filter, newData);
+    const user = await updateOne(filter, newData);
+    if (!user)
+      throw new HttpException(HttpStatus.NOT_FOUND, 'user not found');
+    return user;
   }
 
   public async deleteUser(filter: TUserFilter) {
