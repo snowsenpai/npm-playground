@@ -3,15 +3,15 @@ import { Knex } from 'knex';
 const knexConfig: Knex.Config = {
   client: 'pg',
   connection: {
-    host: process.env.POSTGRES_HOSTNAME,
-    port: +process.env.POSTGRES_PORT!,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DATABASE,
+    host: process.env.PG_HOSTNAME,
+    port: +process.env.PG_PORT!,
+    user: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+    database: process.env.PG_DATABASE,
   },
   pool: {
-    min: +process.env.POSTGRES_POOL_MIN!,
-    max: +process.env.POSTGRES_POOL_MAX!,
+    min: +process.env.PG_POOL_MIN!,
+    max: +process.env.PG_POOL_MAX!,
   },
   migrations: {
     extension: 'ts',

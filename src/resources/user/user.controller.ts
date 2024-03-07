@@ -7,8 +7,8 @@ const userService = new UserService();
 
 export async function create(req: Request, res: Response, next: NextFunction) {
   try {
-    const {firstName, lastName, email, username} = req.body;
-    const user = await userService.create(firstName, lastName, email, username);
+    const {first_name, last_name, email, username} = req.body;
+    const user = await userService.create(first_name, last_name, email, username);
 
     res.status(HttpStatus.OK).json(user);
   } catch (error) {
