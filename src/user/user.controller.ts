@@ -1,47 +1,38 @@
 import { Request, Response, NextFunction } from 'express';
 import { UserService } from './user.service';
-import { HttpStatus } from '../utils/exceptions';
+import { HttpStatus, HttpResponse } from '../utils/exceptions';
 import * as schema from './user.validators';
 
-const userService = new UserService();
-
-export async function create(req: Request, res: Response, next: NextFunction) {
-  try {
+export class UserController {
+  public static async create(req: Request, res: Response, next: NextFunction) {
     const {first_name, last_name, email, username} = req.body;
-    const user = await userService.create(first_name, last_name, email, username);
-
-    res.status(HttpStatus.OK).json(user);
-  } catch (error) {
-    next(error);
+    const user = await UserService.create(first_name, last_name, email, username);
+    const result = HttpResponse.success('user created', user);
+  
+    res.status(HttpStatus.OK).json(result);
   }
-}
-
-export async function find(req: Request, res: Response, next: NextFunction) {
-  try {
+  
+  public static async find(req: Request, res: Response, next: NextFunction) {
     const filter: typeof schema.findQuery._type = req.query;
-    const user = await userService.findUser(filter);
-    res.status(HttpStatus.OK).json(user);
-  } catch (error) {
-    next(error);
+    const user = await UserService.findUser(filter);
+    const result = HttpResponse.success('user found', user);
+  
+    res.status(HttpStatus.OK).json(result);
   }
-}
-
-export async function update(req: Request, res: Response, next: NextFunction) {
-  try {
+  
+  public static async update(req: Request, res: Response, next: NextFunction) {
     const filter: typeof schema.findQuery._type = req.query;
-    const user = await userService.updateUser(filter, req.body);
-    res.status(HttpStatus.OK).json(user);
-  } catch (error) {
-    next(error);
+    const user = await UserService.updateUser(filter, req.body);
+    const result = HttpResponse.success('user updated', user);
+  
+    res.status(HttpStatus.OK).json(result);
   }
-}
-
-export async function deleteUser(req: Request, res: Response, next: NextFunction) {
-  try {
-    const filter: typeof schema.findQuery._type = req.query;
-    const user = await userService.deleteUser(filter);
-    res.status(HttpStatus.OK).json({ userDeleted: user });
-  } catch (error) {
-    next(error);
+  
+  public static async deleteUser(req: Request, res: Response, next: NextFunction) {
+    const filter: typeof schema.findQuery._type = req.query; // use zod inferred type
+    const user = await UserService.deleteUser(filter);
+    const result = HttpResponse.success('user deleted', user);
+  
+    res.status(HttpStatus.OK).json(result);
   }
 }

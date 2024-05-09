@@ -1,36 +1,29 @@
 import { HttpStatus, HttpException } from '../utils/exceptions';
-import { create, findOne, removeOne, updateOne } from './user.dao';
+import { UserRepo } from './user.repo';
 import { IUser, TUserFilter, TFilterOptions, TUpdateUser } from './user.interface';
 
 class UserService {
-  public async create(first_name: string, last_name: string, email: string, username: string) {
-    return await create(first_name, last_name, email, username);
-  }
-
-  public async isUser(filter: TUserFilter) {
-    const user = await findOne(filter);
-    if (!user)
-      return false;
-    return true;
+  public static async create(first_name: string, last_name: string, email: string, username: string) {
+    return await UserRepo.create(first_name, last_name, email, username);
   }
 
   // auth flag to return sensitive fields
-  public async findUser(filter: TUserFilter) {
-    const user = await findOne(filter);
+  public static async findUser(filter: TUserFilter) {
+    const user = await UserRepo.findOne(filter);
     if (!user)
       throw new HttpException(HttpStatus.NOT_FOUND, 'user not found');
     return user;
   }
 
-  public async updateUser(filter: TUserFilter, newData: TUpdateUser) {
-    const user = await updateOne(filter, newData);
+  public static async updateUser(filter: TUserFilter, newData: TUpdateUser) {
+    const user = await UserRepo.updateOne(filter, newData);
     if (!user)
       throw new HttpException(HttpStatus.NOT_FOUND, 'user not found');
     return user;
   }
 
-  public async deleteUser(filter: TUserFilter) {
-    return await removeOne(filter);
+  public static async deleteUser(filter: TUserFilter) {
+    return await UserRepo.removeOne(filter);
   }
 }
 

@@ -1,16 +1,16 @@
 import { Router } from 'express';
 import { validate } from '../middlewares/index';
 import * as schema from './user.validators';
-import * as userController from './user.controller';
+import { UserController } from './user.controller';
 
 export const userRouter = Router();
 
 const basePath = '/users';
 
-userRouter.get(basePath, validate(schema.findQuery, 'query'), userController.find);
+userRouter.get(basePath, validate(schema.findQuery, 'query'), UserController.find);
 
-userRouter.post(basePath, validate(schema.create, 'body'), userController.create);
+userRouter.post(basePath, validate(schema.create, 'body'), UserController.create);
 
-userRouter.patch(basePath, validate(schema.updateFields, 'body'), validate(schema.findQuery, 'query'), userController.update);
+userRouter.patch(basePath, validate(schema.updateFields, 'body'), validate(schema.findQuery, 'query'), UserController.update);
 
-userRouter.delete(basePath, validate(schema.findQuery, 'query'), userController.deleteUser);
+userRouter.delete(basePath, validate(schema.findQuery, 'query'), UserController.deleteUser);
