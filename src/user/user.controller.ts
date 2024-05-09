@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { UserService } from './user.service';
-import { HttpStatus } from '@/utils/exceptions';
+import { HttpStatus } from '../utils/exceptions';
 import * as schema from './user.validators';
 
 const userService = new UserService();

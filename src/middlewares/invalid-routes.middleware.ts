@@ -1,4 +1,4 @@
-import { HttpStatus } from '@/utils/exceptions/http-status.enum';
+import { HttpStatus } from '../utils/exceptions/http-status.enum';
 import { Request, Response, NextFunction } from 'express';
 
 /**

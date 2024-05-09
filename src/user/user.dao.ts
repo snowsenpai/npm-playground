@@ -1,4 +1,4 @@
-import { knexInstance } from '@/utils/databases/knex/knex';
+import { knexInstance } from '../utils/databases/knex/knex';
 import { IUser, TUserFilter, TFilterOptions, TUpdateUser, TSafeUser } from './user.interface';
 
 const tableName = 'user';

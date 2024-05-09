@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { validate } from '@/middlewares/index';
+import { validate } from '../middlewares/index';
 import * as schema from './user.validators';
 import * as userController from './user.controller';
 

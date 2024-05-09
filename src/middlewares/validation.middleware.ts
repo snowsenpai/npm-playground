@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
-import { HttpStatus } from '@/utils/exceptions';
+import { HttpStatus } from '../utils/exceptions';
 
 type TRequestFields = 'body' | 'params' | 'query' | 'headers';
 

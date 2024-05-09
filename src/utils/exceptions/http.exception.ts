@@ -1,3 +1,5 @@
+import { HttpStatus } from './http-status.enum';
+
 class HttpException extends Error {
   public status: number;
   public message: string;
@@ -6,7 +8,7 @@ class HttpException extends Error {
    * @param status - A valid HttpStatus.
    * @param message - The error message.
    */
-  constructor(status: number, message: string) {
+  constructor(status: HttpStatus, message: string) {
     super(message);
     this.status = status;
     this.message = message;

@@ -1,9 +1,3 @@
-import { errorMiddleware } from './error.middleware';
-import { handelInvalidRoutes } from './invalid-routes.middleware';
-import { validate } from './validation.middleware';
-
-export {
-  errorMiddleware,
-  handelInvalidRoutes,
-  validate,
-}
+export * from './error.middleware';
+export * from './invalid-routes.middleware';
+export * from './validation.middleware';

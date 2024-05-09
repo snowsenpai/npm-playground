@@ -1,8 +1,9 @@
+import 'express-async-errors';
 import 'dotenv/config';
 import 'module-alias/register';
 import { App } from './app';
-import { apiRouters } from './resources';
+import { appRoutes } from './app.routes';
 
-const app = new App(apiRouters, +(process.env.PORT!));
+const app = new App(appRoutes, +(process.env.PORT!));
 
 app.listen();

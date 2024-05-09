@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { HttpException } from '@/utils/exceptions/http.exception';
-import { HttpStatus } from '@/utils/exceptions/http-status.enum';
+import { HttpException } from '../utils/exceptions/http.exception';
+import { HttpStatus } from '../utils/exceptions/http-status.enum';
 
 /**
  * Error handling middleware.

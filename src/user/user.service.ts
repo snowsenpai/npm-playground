@@ -1,4 +1,4 @@
-import { HttpStatus, HttpException } from '@/utils/exceptions';
+import { HttpStatus, HttpException } from '../utils/exceptions';
 import { create, findOne, removeOne, updateOne } from './user.dao';
 import { IUser, TUserFilter, TFilterOptions, TUpdateUser } from './user.interface';
 

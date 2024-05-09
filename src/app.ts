@@ -7,7 +7,7 @@ class App {
   public express: Application;
   public port: number;
 
-  constructor(apiRouters: Router[], port: number) {
+  constructor(apiRouters: Router, port: number) {
     this.express = express();
     this.port = port;
 
@@ -22,10 +22,8 @@ class App {
     this.express.use(express.urlencoded({ extended: false }));
   }
 
-  private initializeRoutes(apiRoutes: Router[]): void {
-    apiRoutes.forEach((apiRoute: Router) => {
-      this.express.use('/api/v1', apiRoute);
-    });
+  private initializeRoutes(apiRoutes: Router): void {
+    this.express.use('/api/v1', apiRoutes);
     this.express.use('*', handelInvalidRoutes);
   }
 
