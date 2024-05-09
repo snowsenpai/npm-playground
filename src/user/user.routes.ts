@@ -5,12 +5,10 @@ import { UserController } from './user.controller';
 
 export const userRouter = Router();
 
-const basePath = '/users';
+userRouter.get('/', validate(schema.findQuery, 'query'), UserController.find);
 
-userRouter.get(basePath, validate(schema.findQuery, 'query'), UserController.find);
+userRouter.post('/', validate(schema.create, 'body'), UserController.create);
 
-userRouter.post(basePath, validate(schema.create, 'body'), UserController.create);
+userRouter.patch('/', validate(schema.updateFields, 'body'), validate(schema.findQuery, 'query'), UserController.update);
 
-userRouter.patch(basePath, validate(schema.updateFields, 'body'), validate(schema.findQuery, 'query'), UserController.update);
-
-userRouter.delete(basePath, validate(schema.findQuery, 'query'), UserController.deleteUser);
+userRouter.delete('/', validate(schema.findQuery, 'query'), UserController.deleteUser);
