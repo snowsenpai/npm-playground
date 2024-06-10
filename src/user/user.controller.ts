@@ -12,7 +12,10 @@ export class UserController {
     res.status(HttpStatus.OK).json(result);
   }
   
+  //! be specific findOne or findAll?
   public static async find(req: Request, res: Response, next: NextFunction) {
+    //! inaccurate, redo
+    // infer and export types of zod schemas z.infer<typeof zSchema>
     const filter: typeof schema.findQuery._type = req.query;
     const user = await UserService.findUser(filter);
     const result = HttpResponse.success('user found', user);

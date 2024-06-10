@@ -1,3 +1,5 @@
+import { createKeysArray } from '../utils/sortField';
+
 export interface IUser {
   id: number;
   first_name: string;
@@ -5,6 +7,8 @@ export interface IUser {
   email: string;
   username: string;
   password: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 // serialized user
@@ -28,3 +32,5 @@ export type TUpdateUser = {
 export type TFilterOptions = {
   sensitiveFields?: boolean;
 }
+
+export const userSortFields = createKeysArray<IUser>()('email', 'created_at', 'updated_at');

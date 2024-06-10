@@ -1,7 +1,10 @@
 import { Router } from 'express';
-import { validate } from '../middlewares/index';
 import * as schema from './user.validators';
 import { UserController } from './user.controller';
+
+// cyclic dependency if middleware file imports a module from user/index.ts
+// the mw must import directly from user/moduleFile.ts. use "eslint-plugin-import" for cyclic checks
+import { validate } from '../middlewares/index';
 
 export const userRouter = Router();
 
