@@ -8,7 +8,7 @@ import { validate } from '../middlewares/index';
 
 export const userRouter = Router();
 
-userRouter.get('/', validate(schema.findQuery, 'query'), UserController.find);
+userRouter.get('/', validate(schema.findQuery, 'query'), UserController.findOne);
 
 userRouter.post('/', validate(schema.create, 'body'), UserController.create);
 

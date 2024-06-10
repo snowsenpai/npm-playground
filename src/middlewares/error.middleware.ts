@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import { HttpException } from '../utils/exceptions/http.exception';
-import { HttpStatus } from '../utils/exceptions/http-status.enum';
+import { HttpResponse, HttpStatus, HttpException } from '../utils/exceptions';
 
 /**
  * Error handling middleware.
  */
+// refine error handling?
 export function errorMiddleware(
   error: HttpException,
   req: Request,
@@ -18,5 +18,6 @@ export function errorMiddleware(
     message = 'things exploded!';
   }
 
-  res.status(status).send({ message });
+  const response = HttpResponse.failed(message);
+  res.status(status).json(response);
 }

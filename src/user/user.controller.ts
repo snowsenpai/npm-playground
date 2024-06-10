@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { UserService } from './user.service';
 import { HttpStatus, HttpResponse } from '../utils/exceptions';
-import * as schema from './user.validators';
+import { TFindAll, TUpdateUser } from './user.validators';
 
 export class UserController {
   public static async create(req: Request, res: Response, next: NextFunction) {
@@ -12,11 +12,8 @@ export class UserController {
     res.status(HttpStatus.OK).json(result);
   }
   
-  //! be specific findOne or findAll?
-  public static async find(req: Request, res: Response, next: NextFunction) {
-    //! inaccurate, redo
-    // infer and export types of zod schemas z.infer<typeof zSchema>
-    const filter: typeof schema.findQuery._type = req.query;
+  public static async findOne(req: Request, res: Response, next: NextFunction) {
+    const filter: TFindAll = req.query;
     const user = await UserService.findUser(filter);
     const result = HttpResponse.success('user found', user);
   
@@ -24,15 +21,16 @@ export class UserController {
   }
   
   public static async update(req: Request, res: Response, next: NextFunction) {
-    const filter: typeof schema.findQuery._type = req.query;
-    const user = await UserService.updateUser(filter, req.body);
+    const filter: TFindAll = req.query
+    const newData: TUpdateUser = req.body;
+    const user = await UserService.updateUser(filter, newData);
     const result = HttpResponse.success('user updated', user);
   
     res.status(HttpStatus.OK).json(result);
   }
   
   public static async deleteUser(req: Request, res: Response, next: NextFunction) {
-    const filter: typeof schema.findQuery._type = req.query; // use zod inferred type
+    const filter: TFindAll = req.query;
     const user = await UserService.deleteUser(filter);
     const result = HttpResponse.success('user deleted', user);
   

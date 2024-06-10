@@ -1,7 +1,9 @@
 import { knexInstance } from '../utils/databases/knex/knex';
-import { IUser, TUserFilter, TFilterOptions, TUpdateUser, TSafeUser } from './user.interface';
+import { IUser, TSafeUser } from './user.interface';
+import { TFindAll, TUpdateUser } from './user.validators';
 
 // data access object
+//! Knex Error handling!!
 export class UserRepo {
   public static tableName = 'user';
 
@@ -10,16 +12,16 @@ export class UserRepo {
   }
 
   // *filter options e.g select sensitive fields?
-  static async findOne(filter: TUserFilter) {
+  static async findOne(filter: TFindAll) {
     // *support returning dynamic columns ref .select()
     return await knexInstance(this.tableName).where(filter).first<IUser>();
   }
 
-  static async updateOne(filter: TUserFilter, newData: TUpdateUser) {
+  static async updateOne(filter: TFindAll, newData: TUpdateUser) {
     return await knexInstance(this.tableName).where(filter).update(newData).returning<TSafeUser>('*');
   }
 
-  static async removeOne(filter: TUserFilter) {
+  static async removeOne(filter: TFindAll) {
     return await knexInstance(this.tableName).where(filter).del();
   }  
 }

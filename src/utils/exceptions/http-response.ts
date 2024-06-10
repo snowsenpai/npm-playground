@@ -12,10 +12,10 @@ export class HttpResponse {
   }
 
   static success(message: string, data?: any): HttpResponse {
-    return new HttpResponse(true, message, data, null);
+    return new HttpResponse(true, message, data, undefined);
   }
 
   static failed(message: string, errors?: any): HttpResponse {
-    return new HttpResponse(false, message, null, errors);
+    return new HttpResponse(false, message, undefined, errors);
   }
 }

@@ -8,7 +8,7 @@ const email = z.string().email();
 const username = z.string();
 
 // object key's case should match keys defined in interface (snake_case) which represent a table's column
-//? create z obj from selected fields of a type?
+//? create typed z obj?
 //? create base z obj, infer type then extend to another type? e.g interface IUser extends TCreateUser
 export const create = z.object({ 
   first_name,
@@ -33,9 +33,13 @@ export const findQuery = z.object({
   username: username.optional()
 });
 
+export type TFindAll = z.infer<typeof findQuery>;
+
 export const updateFields = z.object({ 
   first_name: first_name.optional(),
   last_name: last_name.optional(),
   email: email.optional(),
   username: username.optional()
 });
+
+export type TUpdateUser = z.infer<typeof updateFields>;
