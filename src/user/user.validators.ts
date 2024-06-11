@@ -1,27 +1,22 @@
 import { z } from 'zod';
-import { paginationSchema, pk_id } from '../lib/validation-schemas';
-import { userSortFields } from './user.interface';
+import { pk_id, zObject, zResourcePagination } from '../lib/validation-schemas';
+import { TCreateUser, TUpdateUser, userSortFields } from './user.interface';
 
 const first_name = z.string().min(1);
 const last_name = z.string();
 const email = z.string().email();
 const username = z.string();
 
-// object key's case should match keys defined in interface (snake_case) which represent a table's column
-//? create typed z obj?
-//? create base z obj, infer type then extend to another type? e.g interface IUser extends TCreateUser
-export const create = z.object({ 
-  first_name,
-  last_name,
-  email,
-  username
+export const createUser = zObject<TCreateUser>({
+  email: z.string(),
+  password: z.string(),
+  first_name: z.string(),
+  username: z.string(),
+  last_name: z.string(),
 });
 
 // can merge with a z.object if needed
-export const paginateUser = z.object({
-  sortField: z.enum(userSortFields).default('created_at'),
-}).merge(paginationSchema);
-
+export const paginateUser = zResourcePagination(userSortFields, 'created_at');
 export type TUserPaginate = z.infer<typeof paginateUser>;
 
 //? findAll or findOne??
@@ -31,15 +26,19 @@ export const findQuery = z.object({
   last_name: last_name.optional(),
   email: email.optional(),
   username: username.optional()
-});
+}); // if findAll merge paginateUser
 
 export type TFindAll = z.infer<typeof findQuery>;
 
-export const updateFields = z.object({ 
+// without 
+export const updateFields = zObject<TUpdateUser>({ 
   first_name: first_name.optional(),
   last_name: last_name.optional(),
   email: email.optional(),
-  username: username.optional()
+  username: username
 });
 
-export type TUpdateUser = z.infer<typeof updateFields>;
+//* case1: a type with one or more optional keys but with one required key
+// when zObject<TUpdateUser>
+// if TUpdate = TRequired & TOptional -> optional fields will be `unknown`
+export type TUpdateUserValid = z.infer<typeof updateFields>;

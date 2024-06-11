@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { UserService } from './user.service';
 import { HttpStatus, HttpResponse } from '../utils/exceptions';
-import { TFindAll, TUpdateUser } from './user.validators';
+import { TFindAll } from './user.validators';
+import { TUpdateUser } from './user.interface';
 
 export class UserController {
   public static async create(req: Request, res: Response, next: NextFunction) {

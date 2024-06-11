@@ -10,7 +10,7 @@ export const userRouter = Router();
 
 userRouter.get('/', validate(schema.findQuery, 'query'), UserController.findOne);
 
-userRouter.post('/', validate(schema.create, 'body'), UserController.create);
+userRouter.post('/', validate(schema.createUser, 'body'), UserController.create);
 
 userRouter.patch('/', validate(schema.updateFields, 'body'), validate(schema.findQuery, 'query'), UserController.update);
 

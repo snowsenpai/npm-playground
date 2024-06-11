@@ -1,4 +1,4 @@
-export type TPaginate = {
+export type TPaginationDetails = {
   totalFound: number;
   currentPage: number;
   prevPage: number | null;
@@ -8,7 +8,7 @@ export type TPaginate = {
   limit: number;
 };
 
-export function paginationDetails(page: number, limit: number, totalFound: number): TPaginate {
+export function paginationDetails(page: number, limit: number, totalFound: number): TPaginationDetails {
   const _limit = limit > totalFound ? totalFound : limit;
   
   const lastPage = Math.ceil(totalFound / _limit);

@@ -1,6 +1,7 @@
 import { HttpStatus, HttpException } from '../utils/exceptions';
+import { TUpdateUser } from './user.interface';
 import { UserRepo } from './user.repo';
-import { TFindAll, TUpdateUser } from './user.validators';
+import { TFindAll } from './user.validators';
 
 class UserService {
   public static async create(first_name: string, last_name: string, email: string, username: string) {

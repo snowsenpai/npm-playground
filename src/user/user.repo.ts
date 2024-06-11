@@ -1,6 +1,6 @@
 import { knexInstance } from '../utils/databases/knex/knex';
-import { IUser, TSafeUser } from './user.interface';
-import { TFindAll, TUpdateUser } from './user.validators';
+import { IUser, TSafeUser, TUpdateUser } from './user.interface';
+import { TFindAll } from './user.validators';
 
 // data access object
 //! Knex Error handling!!
