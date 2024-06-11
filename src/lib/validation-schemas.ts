@@ -27,7 +27,7 @@ export const zObject = <T extends AnyObj>(arg: ZodObj<T>) => z.object(arg);
  * 
  * @returns a zod object with key `sortField` merged with {@link paginationSchema}
 */
-export const zResourcePagination = <T extends readonly [string, ...string[]]>(arr: T, str: T[number]) => 
+export const zResourcePagination = <T extends readonly [string, ...string[]]>(arr: T, str: z.util.noUndefined<z.Writeable<T>[number]>) => 
   z.object({ sortField: z.enum(arr).default(str) }).merge(paginationSchema);
 
 
