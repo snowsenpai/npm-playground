@@ -20,22 +20,22 @@ export const paginateUser = zResourcePagination(userSortFields, 'created_at');
 export type TUserPaginate = z.infer<typeof paginateUser>;
 
 //? findAll or findOne??
-export const findQuery = z.object({ 
+export const findQuery = z.object({
   id: pk_id.optional(),
   first_name: first_name.optional(),
   last_name: last_name.optional(),
   email: email.optional(),
-  username: username.optional()
+  username: username.optional(),
 }); // if findAll merge paginateUser
 
 export type TFindAll = z.infer<typeof findQuery>;
 
-// without 
-export const updateFields = zObject<TUpdateUser>({ 
+// without
+export const updateFields = zObject<TUpdateUser>({
   first_name: first_name.optional(),
   last_name: last_name.optional(),
   email: email.optional(),
-  username: username
+  username: username,
 });
 
 //* case1: a type with one or more optional keys but with one required key

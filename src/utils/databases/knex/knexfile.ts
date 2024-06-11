@@ -21,6 +21,6 @@ const knexConfig: Knex.Config = {
   seeds: {
     extension: 'ts',
     directory: 'seeds',
-  }
-}
+  },
+};
 export default knexConfig;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 //* get selected keys of a type as an array of strings
 
 interface TestUser {

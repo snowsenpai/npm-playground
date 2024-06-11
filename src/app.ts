@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 import express, { Application, Router } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';

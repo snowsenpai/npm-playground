@@ -10,6 +10,8 @@
     "knex": "npx ts-node -r dotenv/config ./node_modules/knex/bin/cli.js --knexfile src/utils/databases/knex/knexfile.ts",
     "knex:migrate:make": "npm run knex -- migrate:make --",
     "knex:migrate:latest": "npm run knex -- migrate:latest",
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "pretty": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "SnowSenpai",
@@ -25,7 +27,6 @@
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
-    "module-alias": "^2.2.3",
     "moment": "^2.30.1",
     "mongodb": "^6.3.0",
     "morgan": "^1.10.0",
@@ -45,11 +46,16 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.10.5",
     "@types/uuid": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.3.2",
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.3.3"
-  },
-  "_moduleAliases": {
-    "@/src": "dist/"
   }
 }

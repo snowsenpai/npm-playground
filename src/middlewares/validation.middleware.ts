@@ -14,7 +14,7 @@ export function validate(schema: z.ZodObject<any, any>, requestField: TRequestFi
     const result = schema.safeParse(raw);
 
     if (!result.success) {
-      const validationError = fromZodError(result.error, {prefix: null});
+      const validationError = fromZodError(result.error, { prefix: null });
 
       const errors = validationError.toString().replace(/"/g, "'").replace(regex, ',').split('; ');
 
@@ -25,5 +25,5 @@ export function validate(schema: z.ZodObject<any, any>, requestField: TRequestFi
       req[requestField] = result.data;
       return next();
     }
-  }
-};
+  };
+}

@@ -4,6 +4,6 @@ import 'module-alias/register';
 import { App } from './app';
 import { appRoutes } from './app.routes';
 
-const app = new App(appRoutes, +(process.env.PORT!));
+const app = new App(appRoutes, +process.env.PORT!);
 
 app.listen();
