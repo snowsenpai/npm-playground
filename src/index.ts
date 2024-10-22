@@ -1,6 +1,5 @@
 import 'express-async-errors';
 import 'dotenv/config';
-import 'module-alias/register';
 import { App } from './app';
 import { appRoutes } from './app.routes';
 
