@@ -2,7 +2,7 @@
 import express, { Application, Router } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import { errorMiddleware, handelInvalidRoutes } from './middlewares';
+import { errorMiddleware, handelInvalidRoutes, sessionMiddleware } from './middlewares';
 
 class App {
   public express: Application;
@@ -21,6 +21,7 @@ class App {
     this.express.use(morgan('dev'));
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: false }));
+    this.express.use(sessionMiddleware());
   }
 
   private initializeRoutes(apiRoutes: Router): void {
